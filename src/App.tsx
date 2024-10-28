@@ -29,7 +29,7 @@ const App = () => {
 
   const weatherDataService = new WeatherDataService();
 
-  const getWeatherData = async (city: string | null) => {
+  const getWeatherData = async (city: string) => {
     const rawWeatherData: Object = await weatherDataService.getWeather(city);
     let weatherData: any = weatherMapperService.toWeather(rawWeatherData);
     setWeather(weatherData);
@@ -38,9 +38,9 @@ const App = () => {
   const handleSearch = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setSelectedCountry(searchCountry);
-    if (country) {
+    if (searchCountry) {
       const searchInfo: WeatherHistory = {
-        country_name: country,
+        country_name: searchCountry,
         date_history: getCurrentTimeWithDate(),
       };
       console.log(searchInfo);
@@ -151,6 +151,14 @@ const App = () => {
                     }}
                   >
                     <Typography variant="subtitle1">Search History</Typography>
+                    {searchHistory.map((history: any) => {
+                      return (
+                        <Box>
+                          {history.country_name} {history.date_history}
+                          <Button>Search</Button> <Button>Remove</Button>
+                        </Box>
+                      );
+                    })}
                   </Box>
                 </Stack>
               </Box>
