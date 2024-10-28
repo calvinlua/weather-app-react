@@ -36,7 +36,6 @@ const App = () => {
     try {
       const response: any = await weatherDataService.getWeather(city);
       let weatherData: any = weatherMapperService.toWeather(response);
-      console.log(weatherData);
       setWeather(weatherData);
       enqueueSnackbar("Found Weather for Selected Country", {
         variant: "success",
@@ -64,17 +63,14 @@ const App = () => {
         humidity: weather?.humidity,
         weather_main_desc: weather?.weather_main_desc,
       };
-      console.log(searchInfo);
       setSearchHistory(() => [searchInfo, ...searchHistory]);
     }
   };
 
   const handleRestore = (history_id: any) => {
-    console.log(history_id);
     const restoreSearch: any = searchHistory.filter(
       (prevHistory) => prevHistory.id == history_id
     );
-    console.log(restoreSearch);
     const { id, date_history, ...others } = restoreSearch[0];
     setWeather(others); // Display the weather data for the restored item
   };

@@ -22,13 +22,12 @@ export class WeatherService extends HTTPService {
     };
     const queryString: string = new URLSearchParams(params).toString();
     const paramString: string = `?${queryString}`;
-    console.log(paramString);
 
     try {
       let result: any = await this.get(paramString, {});
       return result.request.data;
     } catch (error: any) {
-      console.log("e:" + error);
+      throw new Error("e:" + error);
     }
   }
 }
