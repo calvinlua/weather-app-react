@@ -50,6 +50,7 @@ const App = () => {
   const handleSearch = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setSelectedCountry(searchCountry);
+    getWeatherData(searchCountry);
     if (country) {
       setId((prevId) => prevId + 1);
 
@@ -79,9 +80,11 @@ const App = () => {
       prevHistory.filter((item) => item.id !== id)
     );
   };
-  useEffect(() => {
-    getWeatherData(country);
-  }, [country]);
+
+  // no database data
+  // useEffect(() => {
+  //    getWeatherData(country);
+  // }, []);
 
   return (
     <>
