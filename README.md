@@ -1,12 +1,14 @@
 # Weather App
 
-To start the project in development mode:
+To start the project :
 
 - create an .env file with VITE_APP_KEY at root path and insert your OpenWeather API Key
 
 ```js
 VITE_APP_KEY = "{YOUR_API_KEY}";
 ```
+
+Run the project in development mode:
 
 ```js
 
