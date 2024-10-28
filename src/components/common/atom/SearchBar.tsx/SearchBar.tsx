@@ -11,34 +11,45 @@ const SearchBar = (props: {
 }) => {
   return (
     <>
-      <Stack direction={"row"}>
+      <Stack direction={"row"} gap={3}>
         <form onSubmit={props.handleSearch}>
-          <Autocomplete
-            className={classes["input-box"]}
-            freeSolo
-            options={countries}
-            getOptionLabel={(option) => option}
-            onChange={(event: any, value: any) => {
-              event.preventDefault();
-              props.setSearchCountry(value);
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                id="filled-basic"
-                label="Country"
-                variant="filled"
+          <>
+            <Autocomplete
+              className={classes["input-box"]}
+              freeSolo
+              options={countries}
+              getOptionLabel={(option) => option}
+              onChange={(event: any, value: any) => {
+                event.preventDefault();
+                props.setSearchCountry(value);
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  id="filled-basic"
+                  label="Country"
+                  variant="filled"
+                />
+              )}
+            />
+          </>
+          <>
+            <Button
+              className={classes["search-button"]}
+              sx={{
+                color: "primary.main",
+                backgroundColor: "primary.light",
+                borderRadius: "20px",
+              }}
+              type="submit"
+            >
+              <SearchRounded
+                sx={{
+                  color: "white",
+                }}
               />
-            )}
-          />
-
-          <Button
-            className={classes["search-button"]}
-            sx={{ color: "primary.main" }}
-            type="submit"
-          >
-            <SearchRounded sx={{ color: "white" }} />
-          </Button>
+            </Button>
+          </>
         </form>
       </Stack>
     </>

@@ -42,12 +42,4 @@
   .today-weather {
     display: inline;
   }
-
-  /* .searched-weather-main {
-    display: block;
-  }
-  .searched-weather-sub {
-    display: inline-block;
-    justify-content: space-between;
-  } */
 }

@@ -166,7 +166,7 @@ const App = () => {
                       height: "548px",
                     }}
                   >
-                    <Stack sx={{ opacity: 1 }}>
+                    <Stack sx={{ opacity: 1, backgroundColor: "white" }}>
                       <Typography variant="subtitle1">
                         Search History
                       </Typography>
@@ -181,6 +181,10 @@ const App = () => {
                                     edge="end"
                                     aria-label="restore"
                                     onClick={() => handleRestore(history.id)}
+                                    sx={{
+                                      backgroundColor: "white",
+                                      opacity: 1,
+                                    }}
                                   >
                                     <SearchRounded />
                                   </IconButton>
@@ -188,6 +192,10 @@ const App = () => {
                                     edge="end"
                                     aria-label="delete"
                                     onClick={() => handleDelete(history.id)}
+                                    sx={{
+                                      backgroundColor: "white",
+                                      opacity: 1,
+                                    }}
                                   >
                                     <Delete />
                                   </IconButton>
