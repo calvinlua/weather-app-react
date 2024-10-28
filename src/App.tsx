@@ -22,6 +22,7 @@ import Sunny from "./assets/sun.png";
 import { countries } from "./constants/countries";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import weatherMapperService from "./data/weather/weather.mapper.service";
+import SearchBar from "./components/common/atom/SearchBar.tsx/SearchBar";
 
 const App = () => {
   const [id, setId] = useState(0);
@@ -91,37 +92,10 @@ const App = () => {
         <div className={classes["bg"]}>
           <div className={classes["content"]}>
             <Stack direction={"column"} gap={3}>
-              <Stack direction={"row"}>
-                <form onSubmit={handleSearch}>
-                  <Autocomplete
-                    className={classes["input-box"]}
-                    freeSolo
-                    options={countries}
-                    getOptionLabel={(option) => option}
-                    onChange={(event: any, value: any) => {
-                      event.preventDefault();
-                      setSearchCountry(value);
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        id="filled-basic"
-                        label="Country"
-                        variant="filled"
-                      />
-                    )}
-                  />
-
-                  <Button
-                    className={classes["search-button"]}
-                    sx={{ color: "primary.main" }}
-                    type="submit"
-                  >
-                    <SearchRounded sx={{ color: "white" }} />
-                  </Button>
-                </form>
-              </Stack>
-
+              <SearchBar
+                setSearchCountry={setSearchCountry}
+                handleSearch={handleSearch}
+              />
               <Box
                 className={classes["main-content-box"]}
                 sx={{
