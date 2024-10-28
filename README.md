@@ -31,4 +31,4 @@ Currently, this weather app provide few functionality features:
 
 - mobile view
 - dark mode and light
-- jest unit test and cypress unit test
+- jest unit test and cypress end-to-end integration test
