@@ -7,7 +7,7 @@ export class WeatherService extends HTTPService {
     super(baseURL);
   }
 
-  appid: string = "d8710f6fd9a57562e5a8cbd75c9f2948";
+  appid: string = import.meta.env.VITE_APP_KEY;
   unit_standard: string = "metric";
 
   checkFilter(filter: string) {
@@ -15,6 +15,7 @@ export class WeatherService extends HTTPService {
   }
 
   async getWeather(city: string) {
+    console.log(this.appid);
     const params = {
       q: city,
       appid: this.appid,

@@ -81,11 +81,6 @@ const App = () => {
     );
   };
 
-  // no database data
-  // useEffect(() => {
-  //    getWeatherData(country);
-  // }, []);
-
   return (
     <>
       <SnackbarProvider
