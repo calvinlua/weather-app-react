@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./theme.tsx";
+import { SnackbarProvider } from "notistack";
 
 const router = createBrowserRouter([{ path: "/", element: <App /> }]);
 

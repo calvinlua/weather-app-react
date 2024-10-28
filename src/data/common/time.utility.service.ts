@@ -10,7 +10,6 @@ export const getCurrentTime = () => {
   minutes = minutes < 10 ? "0" + minutes : minutes;
   seconds = seconds < 10 ? "0" + seconds : seconds;
   let strCurrentTime = hours + ":" + minutes + ":" + seconds + isAmPm;
-  console.log(strCurrentTime);
   return strCurrentTime;
 };
 
@@ -25,6 +24,6 @@ export const getCurrentTimeWithDate = () => {
     todayDate.getDate() < 10 ? "0" + todayDate.getDate() : todayDate.getDate();
   const todayDateAndTime: string =
     day + "-" + month + "-" + year + " " + getCurrentTime();
-  console.log(todayDateAndTime);
+
   return todayDateAndTime;
 };

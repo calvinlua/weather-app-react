@@ -1,6 +1,6 @@
 import { HTTPService } from "../common/http.service";
 
-export class CarService extends HTTPService {
+export class WeatherService extends HTTPService {
   constructor(
     baseURL: string = "https://api.openweathermap.org/data/2.5/weather"
   ) {
@@ -10,7 +10,7 @@ export class CarService extends HTTPService {
   appid: string = "d8710f6fd9a57562e5a8cbd75c9f2948";
   unit_standard: string = "metric";
 
-  scheckFilter(filter: string) {
+  checkFilter(filter: string) {
     return filter.length != 0;
   }
 
@@ -26,7 +26,6 @@ export class CarService extends HTTPService {
 
     try {
       let result: any = await this.get(paramString, {});
-      console.log(result.request.data);
       return result.request.data;
     } catch (error: any) {
       console.log("e:" + error);
@@ -34,4 +33,4 @@ export class CarService extends HTTPService {
   }
 }
 
-export default CarService;
+export default WeatherService;
