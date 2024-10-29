@@ -1,25 +1,21 @@
 import {
-  Autocomplete,
   Box,
-  Button,
   IconButton,
   List,
   ListItem,
   ListItemText,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 import classes from "./App.module.css";
 import { Delete, SearchRounded } from "@mui/icons-material";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import WeatherDataService from "./data/weather/weather.service";
 import { getCurrentTimeWithDate } from "./data/common/time.utility.service";
 import { Weather } from "./model/weather/weather";
 import { WeatherHistory } from "./model/weather/weather.history";
 import Cloudy from "./assets/cloud.png";
 import Sunny from "./assets/sun.png";
-import { countries } from "./constants/countries";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import weatherMapperService from "./data/weather/weather.mapper.service";
 import SearchBar from "./components/common/atom/SearchBar.tsx/SearchBar";
@@ -70,12 +66,18 @@ const App = () => {
   };
 
   const handleRestore = (history_id: any) => {
-    const restoreSearch: any = searchHistory.filter(
+    const restoreWeatherHistoryResult: any = searchHistory.filter(
       (prevHistory) => prevHistory.id == history_id
     );
-    const { id, date_history, ...others } = restoreSearch[0];
-    setWeather(others); // Display the weather data for the restored item
+
+    const restoreWeatherData: Weather =
+      weatherMapperService.fromWeatherHistorytoWeather(
+        restoreWeatherHistoryResult[0]
+      );
+
+    setWeather(restoreWeatherData); // Display the weather data for the restored item
   };
+
   const handleDelete = (id: any) => {
     setSearchHistory((prevHistory) =>
       prevHistory.filter((item) => item.id !== id)
@@ -96,40 +98,36 @@ const App = () => {
                 setSearchCountry={setSearchCountry}
                 handleSearch={handleSearch}
               />
-              <Box
-                className={classes["main-content-box"]}
-                sx={{
-                  opacity: 1,
-                  background: "white",
-                }}
-              >
+              <Box className={classes["main-content-box"]}>
                 <Stack>
                   <Stack>
                     {weather != null ? (
                       <Stack direction={"column"}>
                         <div className={classes["today-weather"]}>
-                          <Typography variant="subtitle1">
-                            Today's Weather
-                          </Typography>
-                          <div className={classes["weather-logo"]}>
-                            {weather &&
-                            weather.weather_main_desc == "Clouds" ? (
-                              <img
-                                src={Cloudy}
-                                className={classes["weather-logo"]}
-                              />
-                            ) : (
-                              <img
-                                src={Sunny}
-                                className={classes["weather-logo"]}
-                              />
-                            )}
-                          </div>
+                          <Stack direction={"row"}>
+                            <Typography variant="subtitle1">
+                              Today's Weather
+                            </Typography>
+                            <div className={classes["weather-logo"]}>
+                              {weather &&
+                              weather.weather_main_desc == "Clouds" ? (
+                                <img
+                                  src={Cloudy}
+                                  className={classes["weather-logo"]}
+                                />
+                              ) : (
+                                <img
+                                  src={Sunny}
+                                  className={classes["weather-logo"]}
+                                />
+                              )}
+                            </div>
+                          </Stack>
                         </div>
                         <Typography
                           variant="h1"
                           sx={{
-                            color: "primary.main",
+                            color: "#6C40B5",
                             borderWidth: "10px",
                             borderColor: "white",
                             borderRadius: "20px",
@@ -157,23 +155,16 @@ const App = () => {
                       </Stack>
                     ) : null}
                   </Stack>
-                  <Box
-                    sx={{
-                      backgroundColor: "white",
-                      opacity: 1,
-                      borderRadius: "20px",
-                      width: "620px",
-                      height: "548px",
-                    }}
-                  >
-                    <Stack sx={{ opacity: 1, backgroundColor: "white" }}>
+                  <Box className={classes["sub-content-box"]}>
+                    <Stack>
                       <Typography variant="subtitle1">
                         Search History
                       </Typography>
-                      <List>
+                      <List className="list">
                         {searchHistory.map((history: any) => {
                           return (
                             <ListItem
+                              className={classes["list-item-box"]}
                               key={history.id}
                               secondaryAction={
                                 <>

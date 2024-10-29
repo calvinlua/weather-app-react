@@ -14,11 +14,10 @@ const toWeather = (input: any): Weather => {
   };
 };
 
-const toWeatherHistory = (input: any): WeatherHistory => {
+const fromWeatherHistorytoWeather = (input: any): Weather => {
   return {
-    id: input["id"],
     country_name: input["name"],
-    date_history: input["date_history"],
+    date_now: input["date_history"],
     temp_main: input["temp_main"],
     temp_max: input[" temp_max"],
     temp_min: input["temp_min"],
@@ -29,5 +28,5 @@ const toWeatherHistory = (input: any): WeatherHistory => {
 
 export default {
   toWeather,
-  toWeatherHistory,
+  fromWeatherHistorytoWeather,
 };

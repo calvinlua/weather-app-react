@@ -24,22 +24,46 @@
   }
 
   .main-content-box {
-    border-radius: 40px;
-    border-width: 1px;
-    border-color: "ffffff";
-    background-color: violet;
     padding: 2em;
+    background-color: rgba(255, 255, 255, 0.2);
+    /* border-color: rgba(255, 255, 255, 0.5); */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .sub-content-box {
+    padding: 2em;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+  }
+
+  .list-item-box {
+    width: 580px;
+    height: 60px;
+
+    /* gap: 0px; */
+    border-radius: 16px;
+    /* opacity: 0px; */
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .list {
+    gap: 20px;
   }
 
   .weather-logo {
-    display: fixed;
-    position: 20 20 20 20;
-    z-index: 1;
+    position: relative;
+    top: -80px;
+    z-index: 99;
     width: 300px;
     height: 300px;
   }
 
   .today-weather {
-    display: inline;
+    /* display: inline; */
+    justify-content: space-between;
   }
 }
