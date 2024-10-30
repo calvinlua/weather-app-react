@@ -15,7 +15,6 @@ export class WeatherService extends HTTPService {
   }
 
   async getWeather(city: string) {
-    console.log(this.appid);
     const params = {
       q: city,
       appid: this.appid,

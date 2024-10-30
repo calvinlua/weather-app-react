@@ -43,10 +43,7 @@
   .list-item-box {
     width: 580px;
     height: 60px;
-
-    /* gap: 0px; */
     border-radius: 16px;
-    /* opacity: 0px; */
     background: rgba(255, 255, 255, 0.4);
   }
 
@@ -56,14 +53,17 @@
 
   .weather-logo {
     position: relative;
-    top: -80px;
+    left: 100px;
+    top: -64px;
     z-index: 99;
     width: 300px;
     height: 300px;
   }
 
   .today-weather {
-    /* display: inline; */
-    justify-content: space-between;
+    display: flex;
+    width: 610px;
+    height: 10px;
+    align-items: space-between;
   }
 }

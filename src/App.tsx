@@ -69,12 +69,14 @@ const App = () => {
     const restoreWeatherHistoryResult: any = searchHistory.filter(
       (prevHistory) => prevHistory.id == history_id
     );
+    console.log(restoreWeatherHistoryResult[0]);
 
     const restoreWeatherData: Weather =
       weatherMapperService.fromWeatherHistorytoWeather(
         restoreWeatherHistoryResult[0]
       );
 
+    console.log(restoreWeatherData);
     setWeather(restoreWeatherData); // Display the weather data for the restored item
   };
 
@@ -140,7 +142,11 @@ const App = () => {
                           &deg;
                         </Typography>
 
-                        <Stack direction={"row"} gap={6}>
+                        <Stack
+                          direction={"row"}
+                          gap={8}
+                          sx={{ color: "rgba(102, 102, 102, 1)" }}
+                        >
                           <Typography variant="subtitle1">
                             <b>{weather?.country_name}</b>
                           </Typography>
