@@ -15,8 +15,8 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+
   .content {
-    position: fixed;
     display: flex;
     margin-top: 26px;
     justify-content: center;

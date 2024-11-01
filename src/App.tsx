@@ -166,7 +166,7 @@ const App = () => {
                       <Typography variant="subtitle1">
                         Search History
                       </Typography>
-                      <List className="list">
+                      <List className="list" sx={{ rowGap: "10em" }}>
                         {searchHistory.map((history: any) => {
                           return (
                             <ListItem
@@ -174,36 +174,36 @@ const App = () => {
                               key={history.id}
                               secondaryAction={
                                 <>
-                                  <IconButton
-                                    edge="end"
-                                    aria-label="restore"
-                                    onClick={() => handleRestore(history.id)}
-                                    sx={{
-                                      backgroundColor: "white",
-                                      opacity: 1,
-                                    }}
-                                  >
-                                    <SearchRounded />
-                                  </IconButton>
-                                  <IconButton
-                                    edge="end"
-                                    aria-label="delete"
-                                    onClick={() => handleDelete(history.id)}
-                                    sx={{
-                                      backgroundColor: "white",
-                                      opacity: 1,
-                                    }}
-                                  >
-                                    <Delete />
-                                  </IconButton>
+                                  <Stack direction={"row"} gap={4}>
+                                    <ListItemText
+                                      primary={history.date_history}
+                                    />
+
+                                    <IconButton
+                                      edge="end"
+                                      aria-label="restore"
+                                      onClick={() => handleRestore(history.id)}
+                                      sx={{
+                                        backgroundColor: "white",
+                                      }}
+                                    >
+                                      <SearchRounded />
+                                    </IconButton>
+                                    <IconButton
+                                      edge="end"
+                                      aria-label="delete"
+                                      onClick={() => handleDelete(history.id)}
+                                      sx={{
+                                        backgroundColor: "white",
+                                      }}
+                                    >
+                                      <Delete />
+                                    </IconButton>
+                                  </Stack>
                                 </>
                               }
                             >
                               <ListItemText primary={history.country_name} />
-                              <ListItemText
-                                primary={history.date_history}
-                                sx={{ alignSelf: "flex-end" }}
-                              />
                             </ListItem>
                           );
                         })}
