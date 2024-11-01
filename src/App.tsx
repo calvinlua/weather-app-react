@@ -163,10 +163,13 @@ const App = () => {
                   </Stack>
                   <Box className={classes["sub-content-box"]}>
                     <Stack>
-                      <Typography variant="subtitle1">
+                      <Typography
+                        variant="subtitle1"
+                        className={classes["sub-content-title"]}
+                      >
                         Search History
                       </Typography>
-                      <List className="list" sx={{ rowGap: "10em" }}>
+                      <Stack direction={"column"} gap={"18px"}>
                         {searchHistory.map((history: any) => {
                           return (
                             <ListItem
@@ -207,7 +210,7 @@ const App = () => {
                             </ListItem>
                           );
                         })}
-                      </List>
+                      </Stack>
                     </Stack>
                   </Box>
                 </Stack>

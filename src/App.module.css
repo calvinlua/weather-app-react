@@ -37,6 +37,9 @@
     border-radius: 24px;
   }
 
+  .sub-content-title {
+    padding-bottom: 2em;
+  }
   .list-item-box {
     width: 580px;
     height: 60px;
