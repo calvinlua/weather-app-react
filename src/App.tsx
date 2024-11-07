@@ -1,7 +1,6 @@
 import {
   Box,
   IconButton,
-  List,
   ListItem,
   ListItemText,
   Stack,
@@ -129,7 +128,6 @@ const App = () => {
                         <Typography
                           variant="h1"
                           sx={{
-                            color: "#6C40B5",
                             borderWidth: "10px",
                             borderColor: "white",
                             borderRadius: "20px",
@@ -142,11 +140,7 @@ const App = () => {
                           &deg;
                         </Typography>
 
-                        <Stack
-                          direction={"row"}
-                          gap={8}
-                          sx={{ color: "rgba(102, 102, 102, 1)" }}
-                        >
+                        <Stack direction={"row"} gap={8}>
                           <Typography variant="subtitle1">
                             <b>{weather?.country_name}</b>
                           </Typography>
