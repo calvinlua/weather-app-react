@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import classes from "./App.module.css";
 import { Delete, SearchRounded } from "@mui/icons-material";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import WeatherDataService from "./data/weather/weather.service";
 import { getCurrentTimeWithDate } from "./data/common/time.utility.service";
 import { Weather } from "./model/weather/weather";
@@ -84,6 +84,10 @@ const App = () => {
       prevHistory.filter((item) => item.id !== id)
     );
   };
+
+  useEffect(() => {
+    console.log("HELLO" + import.meta.env.VITE_HELLO);
+  }, []);
 
   return (
     <>
