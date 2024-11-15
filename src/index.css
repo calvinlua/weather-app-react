@@ -8,7 +8,6 @@ body,
 /* Default (light mode) */
 :root {
   font-family: NotoSan;
-
   --search-title-color: rgba(0, 0, 0, 0.4);
   --search-icon-background-color: var(--primary-color);
   --search-bar-background-color: rgba(255, 255, 255, 0.2);
@@ -19,7 +18,7 @@ body,
 
   --primary-color: rgba(108, 64, 181, 1);
   --display-weather-subtitle: rgba(102, 102, 102, 1);
-
+  --text-color: black;
   color: black;
 }
 
@@ -33,6 +32,7 @@ body,
     --main-container-color: rgba(26, 26, 26, 0.3);
     --list-container-color: rgba(26, 26, 26, 0.5);
     --list-container-icons: rgba(26, 26, 26, 0.5);
+    --text-color: white;
 
     color: white;
   }
