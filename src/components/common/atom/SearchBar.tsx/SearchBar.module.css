@@ -1,20 +1,10 @@
 .input-box {
   display: flex;
-  width: 620px;
-  height: 60px;
+  width: 38.75em;
+  height: 3.75em;
   margin-right: 1.8em;
   border-radius: 1em;
   background-color: var(--search-bar-background-color) !important;
-}
-
-.search-field {
-  background: rgb(255, 255, 255, 0);
-  /* color: white !important; */
-  input,
-  select,
-  textarea {
-    color: var(--text-color);
-  }
 }
 
 .search-button {
