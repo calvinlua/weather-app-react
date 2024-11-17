@@ -87,7 +87,8 @@ const App = () => {
 
   useEffect(() => {
     console.log("HELLO" + import.meta.env.VITE_HELLO);
-  }, []);
+    console.log(searchCountry);
+  }, [searchCountry]);
 
   return (
     <>

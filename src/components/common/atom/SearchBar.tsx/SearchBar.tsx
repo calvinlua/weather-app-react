@@ -1,5 +1,5 @@
 import { SearchRounded } from "@mui/icons-material";
-import { Autocomplete, Button, TextField } from "@mui/material";
+import { Autocomplete, Button, Input, TextField } from "@mui/material";
 import { FormEvent } from "react";
 import { countries } from "../../../../constants/countries";
 import classes from "./SearchBar.module.css";
@@ -18,18 +18,41 @@ const SearchBar = (props: {
             options={countries}
             getOptionLabel={(option) => option}
             onChange={(event: any, value: any) => {
+              console.log(value);
               event.preventDefault();
               props.setSearchCountry(value);
+            }}
+            sx={{
+              "& .MuiAutocomplete-inputRoot": {
+                backgroundColor: "transparent",
+              },
+              "& .MuiAutocomplete-popupIndicator": {
+                backgroundColor: "transparent",
+              },
             }}
             renderInput={(params) => (
               <TextField
                 {...params}
                 variant="filled"
-                focused
-                InputProps={{ disableUnderline: true }}
-                id="filled-basic"
                 label="Country"
-                className={classes["search-field"]}
+                InputProps={{ ...params.InputProps, disableUnderline: true }}
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: "var(--text-color)", // Use the global variable for the label color
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "var(--text-color)", // Use the global variable for the focused label color
+                  },
+                  // Change the input text color
+                  "& .MuiInputBase-input": {
+                    color: "var(--text-color)", // Use your global variable
+                  },
+                  // Optional: Customize placeholder text color
+                  "& .MuiInputBase-input::placeholder": {
+                    color: "var(--text-color)", // Use your global variable
+                    opacity: 1, // Ensure the placeholder is not faded
+                  },
+                }}
               />
             )}
           />
