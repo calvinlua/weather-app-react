@@ -23,10 +23,31 @@ const SearchBar = (props: {
               props.setSearchCountry(value);
             }}
             sx={{
+              "& .MuiAutocomplete-root": {
+                backgroundColor: "transparent",
+              },
               "& .MuiAutocomplete-inputRoot": {
                 backgroundColor: "transparent",
               },
+              "& .MuiAutocomplete-input": {
+                backgroundColor: "transparent",
+              },
               "& .MuiAutocomplete-popupIndicator": {
+                backgroundColor: "transparent",
+              },
+              "& .MuiAutocomplete-clearIndicator": {
+                backgroundColor: "transparent",
+              },
+              "& .MuiAutocomplete-endAdornment": {
+                backgroundColor: "transparent",
+              },
+              "& .MuiAutocomplete-paper": {
+                backgroundColor: "transparent",
+              },
+              "& .MuiAutocomplete-listbox": {
+                backgroundColor: "transparent",
+              },
+              "& .Mui-focusedVisible	": {
                 backgroundColor: "transparent",
               },
             }}

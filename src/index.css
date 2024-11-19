@@ -8,45 +8,65 @@ body,
 /* Default (light mode) */
 :root {
   font-family: NotoSan;
+
+  color: black;
+  --text-color: black;
+
+  --background-image: url("../src/assets/bg-light.png");
+
+  --primary-color: rgba(108, 64, 181, 1);
+
+  /* Search bar */
   --search-title-color: rgba(0, 0, 0, 0.4);
   --search-icon-background-color: var(--primary-color);
   --search-bar-background-color: rgba(255, 255, 255, 0.2);
-  --background-image: url("../src/assets/bg-light.png");
-  --main-container-color: rgba(255, 255, 255, 0.2);
-  --list-container-color: rgba(255, 255, 255, 1);
-  --list-container-icons: rgba(26, 26, 26, 0.5);
 
-  --primary-color: rgba(108, 64, 181, 1);
-  --display-weather-subtitle: rgba(102, 102, 102, 1);
-  --text-color: black;
-  color: black;
+  /* Searched Weather Result */
+  --display-weather-subtitle-text-color: rgba(102, 102, 102, 1);
+
+  /* Main Container  */
+  --main-container-color: rgba(255, 255, 255, 0.2);
+  --main-container-border: 1px solid rgba(255, 255, 255, 0.5);
+
+  /* Search History Sub Container */
+  --sub-container-color: rgba(255, 255, 255, 0.2);
+
+  /* Searched History List */
+  --list-item-box-background: rgba(255, 255, 255, 0.4);
+  --list-item-button-background: rgba(255, 255, 255, 1);
+  --list-item-button-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.1);
+  --list-item-button-border: none;
+  --list-item-box-icons-color: rgba(26, 26, 26, 0.5);
 }
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
+    color: white;
+    --text-color: white;
+
+    --background-image: url("../src/assets/bg-dark.png");
+
+    /* Search bar*/
     --search-title-color: rgba(255, 255, 255, 0.4);
     --search-icon-background-color: rgba(40, 18, 77, 1);
     --search-bar-background-color: rgba(26, 26, 26, 0.5);
-    --background-image: url("../src/assets/bg-dark.png");
-    --main-container-color: rgba(26, 26, 26, 0.3);
-    --list-container-color: rgba(26, 26, 26, 0.5);
-    --list-container-icons: rgba(26, 26, 26, 0.5);
-    --text-color: white;
 
-    color: white;
+    /* Searched Weather Result*/
+    --display-weather-subtitle-text-color: white;
+
+    /* Main Container  */
+    --main-container-color: rgba(26, 26, 26, 0.3);
+    --main-container-border: none;
+
+    /* Search History Sub Container */
+    --sub-container-color: rgba(26, 26, 26, 0.3);
+
+    /* Searched History List */
+    --list-item-box-background: rgba(26, 26, 26, 0.5);
+    --list-item-button-background: transparent;
+    --list-item-button-shadow: none;
+    --list-item-button-border: 2px solid rgba(255, 255, 255, 0.4);
+    --list-item-box-icons-color: rgba(255, 255, 255, 1);
   }
 }
-
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}  */

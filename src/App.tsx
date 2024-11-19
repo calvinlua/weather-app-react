@@ -146,16 +146,30 @@ const App = () => {
                         </Typography>
 
                         <Stack direction={"row"} gap={8}>
-                          <Typography variant="subtitle1">
+                          <Typography
+                            variant="subtitle1"
+                            className={classes["display-weather-subtitle"]}
+                          >
                             <b>{weather?.country_name}</b>
                           </Typography>
-                          <Typography variant="subtitle1">
+                          <Typography
+                            variant="subtitle1"
+                            className={classes["display-weather-subtitle"]}
+                          >
                             {weather?.date_now}
                           </Typography>
-                          <Typography variant="subtitle1">
+                          <Typography
+                            variant="subtitle1"
+                            className={classes["display-weather-subtitle"]}
+                          >
                             Humidity:&nbsp;{weather?.humidity}%
                           </Typography>
-                          <Typography>{weather?.weather_main_desc}</Typography>
+                          <Typography
+                            variant="subtitle1"
+                            className={classes["display-weather-subtitle"]}
+                          >
+                            {weather?.weather_main_desc}
+                          </Typography>
                         </Stack>
                       </Stack>
                     ) : null}
@@ -185,21 +199,25 @@ const App = () => {
                                       edge="end"
                                       aria-label="restore"
                                       onClick={() => handleRestore(history.id)}
-                                      sx={{
-                                        backgroundColor: "white",
-                                      }}
+                                      className={
+                                        classes["list-item-icon-button"]
+                                      }
                                     >
-                                      <SearchRounded />
+                                      <SearchRounded
+                                        className={classes["list-item-icon"]}
+                                      />
                                     </IconButton>
                                     <IconButton
                                       edge="end"
                                       aria-label="delete"
                                       onClick={() => handleDelete(history.id)}
-                                      sx={{
-                                        backgroundColor: "white",
-                                      }}
+                                      className={
+                                        classes["list-item-icon-button"]
+                                      }
                                     >
-                                      <Delete />
+                                      <Delete
+                                        className={classes["list-item-icon"]}
+                                      />
                                     </IconButton>
                                   </Stack>
                                 </>
