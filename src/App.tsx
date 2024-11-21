@@ -137,6 +137,7 @@ const App = () => {
                             borderColor: "white",
                             borderRadius: "20px",
                           }}
+                          className={classes["display-temperature"]}
                         >
                           <b>{weather?.temp_main}&deg;</b>
                         </Typography>

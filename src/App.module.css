@@ -1,4 +1,4 @@
-@media (max-width: 2000px), (max-height: 5000px) {
+body {
   .bg {
     position: relative;
     background: var(--background-image);
@@ -9,6 +9,9 @@
     background-size: cover;
   }
 
+  .display-temperature {
+    color: var(--main-temperature-text-color);
+  }
   .container {
     position: fixed;
     width: 100%;
@@ -27,24 +30,24 @@
     margin-top: 5em;
     padding: 2em;
     background-color: var(--main-container-color);
-    backdrop-filter: blur(20px);
-    border-radius: 40px;
+    backdrop-filter: blur(1.25em);
+    border-radius: 2.5em;
     border: var(--main-container-border) !important;
   }
 
   .weather-logo {
     position: relative;
-    left: 100px;
-    top: -64px;
+    left: 6.25em;
+    top: -4em;
     z-index: 99;
-    width: 300px;
-    height: 300px;
+    width: 18.75em;
+    height: 18.75em;
   }
 
   .today-weather {
     display: flex;
-    width: 610px;
-    height: 10px;
+    width: 38.125em;
+    height: 0.625em;
     align-items: space-between;
   }
 
@@ -55,7 +58,7 @@
   .sub-content-box {
     padding: 2em;
     background-color: var(--sub-container-color);
-    border-radius: 24px;
+    border-radius: 1.5em;
   }
 
   .sub-content-title {
@@ -63,13 +66,13 @@
   }
 
   .list {
-    gap: 20px;
+    gap: 1.25em;
   }
 
   .list-item-box {
-    width: 580px;
-    height: 60px;
-    border-radius: 16px;
+    width: 36.25em;
+    height: 3.75em;
+    border-radius: 1em;
     background-color: var(--list-item-box-background);
   }
 
@@ -80,5 +83,40 @@
   }
   .list-item-icon {
     color: var(--list-item-box-icons-color) !important;
+  }
+}
+
+/* For mobile (small) */
+@media screen and (max-width: 400px) {
+  .display-temperature {
+    color: red !important;
+  }
+}
+
+/* For Mobile (large) */
+@media screen and (max-width: 768px) {
+  .display-temperature {
+    color: rgb(165, 41, 88) !important;
+  }
+}
+
+/* For Tablet */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .display-temperature {
+    color: rgb(56, 165, 42) !important;
+  }
+}
+
+/* For Small Desktop / Laptop  */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  .display-temperature {
+    color: yellow !important;
+  }
+}
+
+/* For Large Desktop  */
+@media screen and (min-width: 1441px) {
+  .display-temperature {
+    color: rosybrown !important;
   }
 }
