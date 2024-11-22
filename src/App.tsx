@@ -132,11 +132,6 @@ const App = () => {
                         </div>
                         <Typography
                           variant="h1"
-                          sx={{
-                            borderWidth: "10px",
-                            borderColor: "white",
-                            borderRadius: "20px",
-                          }}
                           className={classes["display-temperature"]}
                         >
                           <b>{weather?.temp_main}&deg;</b>
@@ -183,7 +178,7 @@ const App = () => {
                       >
                         Search History
                       </Typography>
-                      <Stack direction={"column"} gap={"18px"}>
+                      <Stack direction={"column"} gap={" 1.125em"}>
                         {searchHistory.map((history: any) => {
                           return (
                             <ListItem
