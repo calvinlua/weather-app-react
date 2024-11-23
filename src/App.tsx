@@ -1,7 +1,6 @@
 import {
   Box,
   IconButton,
-  List,
   ListItem,
   ListItemText,
   Stack,
@@ -9,7 +8,7 @@ import {
 } from "@mui/material";
 import classes from "./App.module.css";
 import { Delete, SearchRounded } from "@mui/icons-material";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import WeatherDataService from "./data/weather/weather.service";
 import { getCurrentTimeWithDate } from "./data/common/time.utility.service";
 import { Weather } from "./model/weather/weather";
@@ -86,6 +85,11 @@ const App = () => {
     );
   };
 
+  useEffect(() => {
+    console.log("HELLO" + import.meta.env.VITE_HELLO);
+    console.log(searchCountry);
+  }, [searchCountry]);
+
   return (
     <>
       <SnackbarProvider
@@ -128,12 +132,7 @@ const App = () => {
                         </div>
                         <Typography
                           variant="h1"
-                          sx={{
-                            color: "#6C40B5",
-                            borderWidth: "10px",
-                            borderColor: "white",
-                            borderRadius: "20px",
-                          }}
+                          className={classes["display-temperature"]}
                         >
                           <b>{weather?.temp_main}&deg;</b>
                         </Typography>
@@ -142,21 +141,31 @@ const App = () => {
                           &deg;
                         </Typography>
 
-                        <Stack
-                          direction={"row"}
-                          gap={8}
-                          sx={{ color: "rgba(102, 102, 102, 1)" }}
-                        >
-                          <Typography variant="subtitle1">
+                        <Stack direction={"row"} gap={8}>
+                          <Typography
+                            variant="subtitle1"
+                            className={classes["display-weather-subtitle"]}
+                          >
                             <b>{weather?.country_name}</b>
                           </Typography>
-                          <Typography variant="subtitle1">
+                          <Typography
+                            variant="subtitle1"
+                            className={classes["display-weather-subtitle"]}
+                          >
                             {weather?.date_now}
                           </Typography>
-                          <Typography variant="subtitle1">
+                          <Typography
+                            variant="subtitle1"
+                            className={classes["display-weather-subtitle"]}
+                          >
                             Humidity:&nbsp;{weather?.humidity}%
                           </Typography>
-                          <Typography>{weather?.weather_main_desc}</Typography>
+                          <Typography
+                            variant="subtitle1"
+                            className={classes["display-weather-subtitle"]}
+                          >
+                            {weather?.weather_main_desc}
+                          </Typography>
                         </Stack>
                       </Stack>
                     ) : null}
@@ -169,7 +178,7 @@ const App = () => {
                       >
                         Search History
                       </Typography>
-                      <Stack direction={"column"} gap={"18px"}>
+                      <Stack direction={"column"} gap={" 1.125em"}>
                         {searchHistory.map((history: any) => {
                           return (
                             <ListItem
@@ -186,21 +195,25 @@ const App = () => {
                                       edge="end"
                                       aria-label="restore"
                                       onClick={() => handleRestore(history.id)}
-                                      sx={{
-                                        backgroundColor: "white",
-                                      }}
+                                      className={
+                                        classes["list-item-icon-button"]
+                                      }
                                     >
-                                      <SearchRounded />
+                                      <SearchRounded
+                                        className={classes["list-item-icon"]}
+                                      />
                                     </IconButton>
                                     <IconButton
                                       edge="end"
                                       aria-label="delete"
                                       onClick={() => handleDelete(history.id)}
-                                      sx={{
-                                        backgroundColor: "white",
-                                      }}
+                                      className={
+                                        classes["list-item-icon-button"]
+                                      }
                                     >
-                                      <Delete />
+                                      <Delete
+                                        className={classes["list-item-icon"]}
+                                      />
                                     </IconButton>
                                   </Stack>
                                 </>
