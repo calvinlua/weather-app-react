@@ -1,5 +1,5 @@
 import { SearchRounded } from "@mui/icons-material";
-import { Autocomplete, Button, Input, TextField } from "@mui/material";
+import { Autocomplete, Button, TextField } from "@mui/material";
 import { FormEvent } from "react";
 import { countries } from "../../../../constants/countries";
 import classes from "./SearchBar.module.css";
