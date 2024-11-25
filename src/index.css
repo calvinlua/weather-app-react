@@ -7,8 +7,8 @@ body,
 
 /* Default (light mode) */
 :root {
+  font-size: 16px;
   font-family: NotoSan;
-
   color: black;
   --text-color: black;
 

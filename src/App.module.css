@@ -1,4 +1,4 @@
-body {
+:root {
   .bg {
     position: relative;
     background: var(--background-image);
@@ -22,11 +22,14 @@ body {
   .content {
     display: flex;
     margin-top: 2em;
-    justify-content: center;
+    justify-items: center;
     width: 95%;
   }
 
   .main-content-box {
+    display: flex;
+    width: 700px;
+    height: 1145px;
     margin-top: 5em;
     padding: 2em;
     background-color: var(--main-container-color);
@@ -54,47 +57,20 @@ body {
   .display-weather-subtitle {
     color: var(--display-weather-subtitle-text-color);
   }
-
-  .sub-content-box {
-    padding: 2em;
-    background-color: var(--sub-container-color);
-    border-radius: 1.5em;
-  }
-
-  .sub-content-title {
-    padding-bottom: 2em;
-  }
-
-  .list {
-    gap: 1.25em;
-  }
-
-  .list-item-box {
-    width: 36.25em;
-    height: 3.75em;
-    border-radius: 1em;
-    background-color: var(--list-item-box-background);
-  }
-
-  .list-item-icon-button {
-    background: var(--list-item-button-background) !important;
-    box-shadow: var(--list-item-button-shadow);
-    border: var(--list-item-button-border) !important;
-  }
-  .list-item-icon {
-    color: var(--list-item-box-icons-color) !important;
-  }
 }
 
 /* For mobile (small) */
 @media screen and (max-width: 400px) {
-  body {
-    font-size: 12px;
+  :root {
+    font-size: 12px !important;
   }
 
   .main-content-box {
-    margin-top: 5em;
-    padding: 2em;
+    display: flex;
+    width: 360px !important;
+    height: 1145px !important;
+    margin-top: 139px !important;
+    padding: 26px !important;
     background-color: var(--main-container-color);
     backdrop-filter: blur(1.25em);
     border-radius: 2.5em;

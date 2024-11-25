@@ -1,13 +1,5 @@
-import {
-  Box,
-  IconButton,
-  ListItem,
-  ListItemText,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import classes from "./App.module.css";
-import { Delete, SearchRounded } from "@mui/icons-material";
 import { FormEvent, useEffect, useState } from "react";
 import WeatherDataService from "./data/weather/weather.service";
 import { getCurrentTimeWithDate } from "./data/common/time.utility.service";
@@ -17,7 +9,8 @@ import Cloudy from "./assets/cloud.png";
 import Sunny from "./assets/sun.png";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import weatherMapperService from "./data/weather/weather.mapper.service";
-import SearchBar from "./components/common/atom/SearchBar.tsx/SearchBar";
+import SearchBar from "./components/common/atom/SearchBar/SearchBar";
+import HistoryList from "./components/common/atom/HistoryList/HistoryList";
 
 const App = () => {
   const [id, setId] = useState(0);
@@ -64,7 +57,7 @@ const App = () => {
     }
   };
 
-  const handleRestore = (history_id: any) => {
+  const handleRestore = (history_id: number) => {
     const restoreWeatherHistoryResult: any = searchHistory.filter(
       (prevHistory) => prevHistory.id == history_id
     );
@@ -79,7 +72,7 @@ const App = () => {
     setWeather(restoreWeatherData); // Display the weather data for the restored item
   };
 
-  const handleDelete = (id: any) => {
+  const handleDelete = (id: number) => {
     setSearchHistory((prevHistory) =>
       prevHistory.filter((item) => item.id !== id)
     );
@@ -99,7 +92,7 @@ const App = () => {
       <div className={classes["container"]}>
         <div className={classes["bg"]}>
           <div className={classes["content"]}>
-            <Stack direction={"column"} gap={3}>
+            <Stack direction={"column"}>
               <SearchBar
                 setSearchCountry={setSearchCountry}
                 handleSearch={handleSearch}
@@ -170,62 +163,11 @@ const App = () => {
                       </Stack>
                     ) : null}
                   </Stack>
-                  <Box className={classes["sub-content-box"]}>
-                    <Stack>
-                      <Typography
-                        variant="subtitle1"
-                        className={classes["sub-content-title"]}
-                      >
-                        Search History
-                      </Typography>
-                      <Stack direction={"column"} gap={" 1.125em"}>
-                        {searchHistory.map((history: any) => {
-                          return (
-                            <ListItem
-                              className={classes["list-item-box"]}
-                              key={history.id}
-                              secondaryAction={
-                                <>
-                                  <Stack direction={"row"} gap={4}>
-                                    <ListItemText
-                                      primary={history.date_history}
-                                    />
-
-                                    <IconButton
-                                      edge="end"
-                                      aria-label="restore"
-                                      onClick={() => handleRestore(history.id)}
-                                      className={
-                                        classes["list-item-icon-button"]
-                                      }
-                                    >
-                                      <SearchRounded
-                                        className={classes["list-item-icon"]}
-                                      />
-                                    </IconButton>
-                                    <IconButton
-                                      edge="end"
-                                      aria-label="delete"
-                                      onClick={() => handleDelete(history.id)}
-                                      className={
-                                        classes["list-item-icon-button"]
-                                      }
-                                    >
-                                      <Delete
-                                        className={classes["list-item-icon"]}
-                                      />
-                                    </IconButton>
-                                  </Stack>
-                                </>
-                              }
-                            >
-                              <ListItemText primary={history.country_name} />
-                            </ListItem>
-                          );
-                        })}
-                      </Stack>
-                    </Stack>
-                  </Box>
+                  <HistoryList
+                    HistoryList={searchHistory}
+                    handleRestore={handleRestore}
+                    handleDelete={handleDelete}
+                  />
                 </Stack>
               </Box>
             </Stack>
