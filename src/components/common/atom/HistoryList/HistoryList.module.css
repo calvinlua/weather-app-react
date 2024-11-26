@@ -1,5 +1,7 @@
 .sub-content-box {
   padding: 20px;
+  width: 620px;
+  height: 548px;
   background-color: var(--sub-container-color);
   border-radius: 1.5em;
 }

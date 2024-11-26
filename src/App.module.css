@@ -12,6 +12,7 @@
   .display-temperature {
     color: var(--main-temperature-text-color);
   }
+
   .container {
     position: fixed;
     width: 100%;
@@ -22,7 +23,8 @@
   .content {
     display: flex;
     margin-top: 2em;
-    justify-items: center;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
     width: 95%;
   }
 
@@ -32,6 +34,8 @@
     height: 1145px;
     margin-top: 5em;
     padding: 2em;
+    justify-content: center;
+    /* align-items: center;  */
     background-color: var(--main-container-color);
     backdrop-filter: blur(1.25em);
     border-radius: 2.5em;
@@ -114,7 +118,12 @@
 
 /* For Large Desktop  */
 @media screen and (min-width: 1441px) {
-  .display-temperature {
-    color: rosybrown !important;
+  .weather-logo {
+    position: relative;
+    left: 6.25em;
+    top: -4em;
+    z-index: 99;
+    width: 157px !important;
+    height: 157px !important;
   }
 }

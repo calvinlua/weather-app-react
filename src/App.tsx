@@ -101,7 +101,7 @@ const App = () => {
                 <Stack>
                   <Stack>
                     {weather != null ? (
-                      <Stack direction={"column"}>
+                      <Stack direction={"column"} gap={"2em"}>
                         <div className={classes["today-weather"]}>
                           <Stack direction={"row"}>
                             <Typography variant="subtitle1">
