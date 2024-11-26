@@ -35,7 +35,6 @@
     margin-top: 5em;
     padding: 2em;
     justify-content: center;
-    /* align-items: center;  */
     background-color: var(--main-container-color);
     backdrop-filter: blur(1.25em);
     border-radius: 2.5em;
@@ -66,32 +65,32 @@
 /* For mobile (small) */
 @media screen and (max-width: 400px) {
   :root {
-    font-size: 12px !important;
-  }
+    font-size: 12px;
 
-  .main-content-box {
-    display: flex;
-    width: 360px !important;
-    height: 1145px !important;
-    margin-top: 139px !important;
-    padding: 26px !important;
-    background-color: var(--main-container-color);
-    backdrop-filter: blur(1.25em);
-    border-radius: 2.5em;
-    border: var(--main-container-border) !important;
-  }
+    .main-content-box {
+      display: flex;
+      width: 360px;
+      height: 1145px;
+      margin-top: 139px;
+      padding: 26px;
+      background-color: var(--main-container-color);
+      backdrop-filter: blur(1.25em);
+      border-radius: 2.5em;
+      border: var(--main-container-border);
+    }
 
-  .weather-logo {
-    position: relative;
-    left: 6.25em;
-    top: -4em;
-    z-index: 99;
-    width: 9.8125em !important;
-    height: 9.8125em !important;
-  }
-  .display-temperature {
-    font-size: 30px !important;
-    color: red !important;
+    .weather-logo {
+      position: relative;
+      left: 6.25em;
+      top: -4em;
+      z-index: 99;
+      width: 157px;
+      height: 157px;
+    }
+    .display-temperature {
+      font-size: 30px;
+      color: red;
+    }
   }
 }
 
@@ -123,7 +122,5 @@
     left: 6.25em;
     top: -4em;
     z-index: 99;
-    width: 157px !important;
-    height: 157px !important;
   }
 }
