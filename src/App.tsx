@@ -20,7 +20,6 @@ const App = () => {
   const [searchHistory, setSearchHistory] = useState<WeatherHistory[]>([]);
 
   const weatherDataService = new WeatherDataService();
-
   const getWeatherData = async (city: string) => {
     try {
       const response: any = await weatherDataService.getWeather(city);
@@ -92,16 +91,16 @@ const App = () => {
       <div className={classes["container"]}>
         <div className={classes["bg"]}>
           <div className={classes["content"]}>
-            <Stack direction={"column"}>
+            <div className="">
               <SearchBar
                 setSearchCountry={setSearchCountry}
                 handleSearch={handleSearch}
               />
               <Box className={classes["main-content-box"]}>
-                <Stack>
-                  <Stack>
+                <div>
+                  <div>
                     {weather != null ? (
-                      <Stack direction={"column"} gap={"2em"}>
+                      <div>
                         <div className={classes["today-weather"]}>
                           <Stack direction={"row"}>
                             <Typography variant="subtitle1">
@@ -160,17 +159,17 @@ const App = () => {
                             {weather?.weather_main_desc}
                           </Typography>
                         </Stack>
-                      </Stack>
+                      </div>
                     ) : null}
-                  </Stack>
+                  </div>
                   <HistoryList
                     HistoryList={searchHistory}
                     handleRestore={handleRestore}
                     handleDelete={handleDelete}
                   />
-                </Stack>
+                </div>
               </Box>
-            </Stack>
+            </div>
           </div>
         </div>
       </div>
