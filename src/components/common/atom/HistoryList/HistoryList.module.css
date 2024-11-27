@@ -23,13 +23,13 @@
 }
 
 .list-item-icon-button {
-  background: var(--list-item-button-background) !important;
+  background: var(--list-item-button-background);
   box-shadow: var(--list-item-button-shadow);
-  border: var(--list-item-button-border) !important;
+  border: var(--list-item-button-border);
 }
 
 .list-item-icon {
-  color: var(--list-item-box-icons-color) !important;
+  color: var(--list-item-box-icons-color);
 }
 
 .list-item-timestamp {
@@ -50,8 +50,8 @@
   }
 
   .list-item-box {
-    width: 290px !important;
-    height: 60px !important;
+    width: 290px;
+    height: 60px;
     border-radius: 16px;
     background-color: var(--list-item-box-background);
   }
@@ -61,6 +61,6 @@
   }
 
   .list-item-timestamp {
-    font-size: 10px !important;
+    font-size: 10px;
   }
 }

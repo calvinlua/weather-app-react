@@ -38,7 +38,7 @@
     background-color: var(--main-container-color);
     backdrop-filter: blur(1.25em);
     border-radius: 2.5em;
-    border: var(--main-container-border) !important;
+    border: var(--main-container-border);
   }
 
   .weather-logo {
@@ -96,23 +96,17 @@
 
 /* For Mobile (large) */
 /* @media screen and (max-width: 768px) {
-  .display-temperature {
-    color: rgb(165, 41, 88) !important;
-  }
+
 } */
 
 /* For Tablet */
 /* @media screen and (min-width: 769px) and (max-width: 1024px) {
-  .display-temperature {
-    color: rgb(56, 165, 42) !important;
-  }
+
 } */
 
 /* For Small Desktop / Laptop  */
 /* @media screen and (min-width: 1025px) and (max-width: 1440px) {
-  .display-temperature {
-    color: yellow !important;
-  }
+
 } */
 
 /* For Large Desktop  */
