@@ -57,6 +57,11 @@
     align-items: space-between;
   }
 
+  .weather-subinfo {
+    column-count: 4; /* Number of columns */
+    column-gap: 20px; /* Gap between columns */
+  }
+
   .display-weather-subtitle {
     color: var(--display-weather-subtitle-text-color);
   }
@@ -89,7 +94,6 @@
     }
     .display-temperature {
       font-size: 30px;
-      color: red;
     }
   }
 }

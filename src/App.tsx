@@ -132,8 +132,7 @@ const App = () => {
                           H:{weather?.temp_max}&deg;&nbsp;L:{weather?.temp_min}
                           &deg;
                         </Typography>
-
-                        <Stack direction={"row"} gap={8}>
+                        <div className={classes["weather-subinfo"]}>
                           <Typography
                             variant="subtitle1"
                             className={classes["display-weather-subtitle"]}
@@ -158,7 +157,7 @@ const App = () => {
                           >
                             {weather?.weather_main_desc}
                           </Typography>
-                        </Stack>
+                        </div>
                       </div>
                     ) : null}
                   </div>

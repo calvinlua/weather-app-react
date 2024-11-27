@@ -69,6 +69,7 @@ body,
     --list-item-button-background: transparent;
     --list-item-button-shadow: none;
     --list-item-button-border: 0.125em solid rgba(255, 255, 255, 0.4);
-    --list-item-box-icons-color: rgba(255, 255, 255, 1);
+    --list-item-box-icons-color: rgba(255, 255, 255, 0.5);
+    --list-item-box-timestamp: rgba(255, 255, 255, 0.5);
   }
 }
