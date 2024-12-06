@@ -1,40 +1,35 @@
-:root {
-  .input-box {
-    display: flex;
-    width: 38.75em;
-    height: 3.75em;
-    margin-right: 1.8em;
-    border-radius: 1em;
-    background-color: var(--search-bar-background-color);
-  }
-
-  .search-button {
-    display: flex;
-    background-color: var(--search-icon-background-color);
-    width: 60px;
-    height: 60px;
-    border-radius: 20px;
-  }
+.input-box {
+  display: flex;
+  width: 38.75em;
+  height: 3.75em;
+  margin-right: 1.8em;
+  border-radius: 1em;
+  background-color: var(--search-bar-background-color);
+}
+body .search-button {
+  display: flex;
+  background-color: var(--search-icon-background-color);
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
 }
 
 /* For mobile (small) */
 @media screen and (max-width: 400px) {
-  :root {
-    .input-box {
-      display: flex;
-      width: 310px;
-      height: 40px;
-      margin-right: 10px;
-      border-radius: 8px;
-      background-color: var(--search-bar-background-color);
-      align-self: auto;
-    }
-    .search-button {
-      display: flex;
-      background-color: var(--search-icon-background-color);
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-    }
+  .input-box {
+    display: flex;
+    width: 310px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 8px;
+    background-color: var(--search-bar-background-color);
+    align-self: auto;
+  }
+  .search-button {
+    display: flex;
+    background-color: var(--search-icon-background-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
   }
 }

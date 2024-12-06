@@ -96,7 +96,7 @@ const App = () => {
                 setSearchCountry={setSearchCountry}
                 handleSearch={handleSearch}
               />
-              <Box className={classes["main-content-box"]}>
+              <div className={classes["main-content-box"]}>
                 <div>
                   <div>
                     {weather != null ? (
@@ -167,7 +167,7 @@ const App = () => {
                     handleDelete={handleDelete}
                   />
                 </div>
-              </Box>
+              </div>
             </div>
           </div>
         </div>

@@ -1,40 +1,80 @@
-:root {
-  .bg {
-    position: relative;
-    background: var(--background-image);
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+.bg {
+  position: relative;
+  background: var(--background-image);
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  .display-temperature {
-    color: var(--main-temperature-text-color);
-  }
+.display-temperature {
+  color: var(--main-temperature-text-color);
+}
 
-  .container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    display: flex;
-  }
+.container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
 
-  .content {
-    display: flex;
-    margin-top: 2em;
-    justify-content: center; /* Horizontally center */
-    align-items: center; /* Vertically center */
-    width: 95%;
-  }
+.content {
+  display: flex;
+  margin-top: 2em;
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+  width: 95%;
+}
+
+.main-content-box {
+  display: flex;
+  width: 700px;
+  height: 1145px;
+  margin-top: 5em;
+  padding: 2em;
+  justify-content: center;
+  background-color: var(--main-container-color);
+  backdrop-filter: blur(1.25em);
+  border-radius: 2.5em;
+  border: var(--main-container-border);
+}
+
+.weather-logo {
+  position: relative;
+  left: 6.25em;
+  top: -4em;
+  z-index: 99;
+  width: 18.75em;
+  height: 18.75em;
+}
+
+.today-weather {
+  display: flex;
+  width: 38.125em;
+  height: 0.625em;
+  align-items: space-between;
+}
+
+.weather-subinfo {
+  column-count: 4; /* Number of columns */
+  column-gap: 20px; /* Gap between columns */
+}
+
+.display-weather-subtitle {
+  color: var(--display-weather-subtitle-text-color);
+}
+
+/* For mobile (small) */
+@media screen and (max-width: 400px) {
+  font-size: 12px;
 
   .main-content-box {
     display: flex;
-    width: 700px;
+    width: 360px;
     height: 1145px;
-    margin-top: 5em;
-    padding: 2em;
-    justify-content: center;
+    margin-top: 139px;
+    padding: 26px;
     background-color: var(--main-container-color);
     backdrop-filter: blur(1.25em);
     border-radius: 2.5em;
@@ -46,55 +86,11 @@
     left: 6.25em;
     top: -4em;
     z-index: 99;
-    width: 18.75em;
-    height: 18.75em;
+    width: 157px;
+    height: 157px;
   }
-
-  .today-weather {
-    display: flex;
-    width: 38.125em;
-    height: 0.625em;
-    align-items: space-between;
-  }
-
-  .weather-subinfo {
-    column-count: 4; /* Number of columns */
-    column-gap: 20px; /* Gap between columns */
-  }
-
-  .display-weather-subtitle {
-    color: var(--display-weather-subtitle-text-color);
-  }
-}
-
-/* For mobile (small) */
-@media screen and (max-width: 400px) {
-  :root {
-    font-size: 12px;
-
-    .main-content-box {
-      display: flex;
-      width: 360px;
-      height: 1145px;
-      margin-top: 139px;
-      padding: 26px;
-      background-color: var(--main-container-color);
-      backdrop-filter: blur(1.25em);
-      border-radius: 2.5em;
-      border: var(--main-container-border);
-    }
-
-    .weather-logo {
-      position: relative;
-      left: 6.25em;
-      top: -4em;
-      z-index: 99;
-      width: 157px;
-      height: 157px;
-    }
-    .display-temperature {
-      font-size: 30px;
-    }
+  .display-temperature {
+    font-size: 30px;
   }
 }
 
