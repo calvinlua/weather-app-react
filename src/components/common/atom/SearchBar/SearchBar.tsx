@@ -1,13 +1,13 @@
 import { SearchRounded } from "@mui/icons-material";
-import { Autocomplete, Button, TextField } from "@mui/material";
-import { FormEvent } from "react";
+import {Autocomplete, AutocompleteRenderInputParams, Button, TextField} from "@mui/material";
+import { FormEvent, ReactElement} from "react";
 import { countries } from "../../../../constants/countries";
 import classes from "./SearchBar.module.css";
 
 const SearchBar = (props: {
   setSearchCountry: any;
   handleSearch: (e: FormEvent<HTMLFormElement>) => void;
-}) => {
+}) : ReactElement => {
   return (
     <div>
       <form onSubmit={props.handleSearch} style={{ display: "flex " }}>
@@ -51,7 +51,7 @@ const SearchBar = (props: {
               backgroundColor: "transparent",
             },
           }}
-          renderInput={(params) => (
+          renderInput={(params :AutocompleteRenderInputParams) : ReactElement => (
             <TextField
               {...params}
               variant="filled"
