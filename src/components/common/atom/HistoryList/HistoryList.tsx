@@ -9,12 +9,13 @@ import {
 } from "@mui/material";
 import { WeatherHistory } from "../../../../model/weather/weather.history";
 import classes from "./HistoryList.module.css";
+import { ReactElement } from "react";
 
 const HistoryList = (props: {
   HistoryList: WeatherHistory[];
   handleRestore: (history_id: number) => void;
   handleDelete: (history_id: number) => void;
-}) => {
+}): ReactElement => {
   return (
     <Box className={classes["sub-content-box"]}>
       <Stack>
@@ -25,7 +26,7 @@ const HistoryList = (props: {
           Search History
         </Typography>
         <Stack direction={"column"} gap={"18px"}>
-          {props.HistoryList.map((history: any) => {
+          {props.HistoryList.map((history: any): ReactElement => {
             return (
               <ListItem
                 className={classes["list-item-box"]}
@@ -39,7 +40,7 @@ const HistoryList = (props: {
                     <IconButton
                       edge="end"
                       aria-label="restore"
-                      onClick={() => props.handleRestore(history.id)}
+                      onClick={():void => props.handleRestore(history.id)}
                       className={classes["list-item-icon-button"]}
                     >
                       <SearchRounded className={classes["list-item-icon"]} />
@@ -47,7 +48,7 @@ const HistoryList = (props: {
                     <IconButton
                       edge="end"
                       aria-label="delete"
-                      onClick={() => props.handleDelete(history.id)}
+                      onClick={():void => props.handleDelete(history.id)}
                       className={classes["list-item-icon-button"]}
                     >
                       <Delete className={classes["list-item-icon"]} />

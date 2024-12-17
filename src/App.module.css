@@ -22,16 +22,22 @@
 .content {
   display: flex;
   margin-top: 2em;
-  justify-content: center; /* Horizontally center */
-  align-items: center; /* Vertically center */
-  width: 95%;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.searchbar {
+  display: flex;
 }
 
 .main-content-box {
   display: flex;
-  width: 700px;
-  height: 1145px;
-  margin-top: 5em;
+  max-width: 30%;
+  width: 48.6%; /* Optional max width */
+  height: auto; /* Adjust to content */
+  margin: 5em auto; /* Center vertically and horizontally */
   padding: 2em;
   justify-content: center;
   background-color: var(--main-container-color);
@@ -47,16 +53,16 @@
   z-index: 99;
   width: 18.75em;
   height: 18.75em;
+  aspect-ratio: 1/1;
 }
 
 .today-weather {
   display: flex;
   width: 38.125em;
   height: 0.625em;
-  align-items: space-between;
 }
 
-.weather-subinfo {
+.weather-sub-info {
   column-count: 4; /* Number of columns */
   column-gap: 20px; /* Gap between columns */
 }
