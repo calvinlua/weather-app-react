@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios, {AxiosInstance} from "axios";
 
 export class HTTPService {
   baseURL: string;
@@ -16,26 +16,24 @@ export class HTTPService {
   }
 
   async request(
-    method: string,
-    url: string,
-    data: any = {},
-    customHeaders: any = {}
-  ) {
+      method: string,
+      url: string,
+      data?: unknown,
+      customHeaders: object = {}
+  ):Promise<{ request: unknown }> {
     const headers = { ...this.defaultHeaders, ...customHeaders };
-    const config: any = {
+    const config : object = {
       method,
       url,
-      headers,
+      headers
     };
-    if (data) {
-      config.data;
-    }
+    config.data = data || undefined;
     return {
       request: await this.instance(config),
     };
   }
 
-  get(url: string, customHeaders: any = {}) {
+  get(url: string, customHeaders: object = {}):Promise<{ request: unknown }>  {
     return this.request("get", url, null, customHeaders);
   }
 }

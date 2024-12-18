@@ -2,7 +2,6 @@ import { Stack, Typography } from "@mui/material";
 import classes from "./App.module.css";
 import {FormEvent, ReactElement, useEffect, useState} from "react";
 import WeatherDataService from "./data/weather/weather.service";
-import { getCurrentTimeWithDate } from "./data/common/time.utility.service";
 import { Weather } from "./model/weather/weather";
 import { WeatherHistory } from "./model/weather/weather.history";
 import Cloudy from "./assets/cloud.png";
@@ -14,60 +13,66 @@ import HistoryList from "./components/common/atom/HistoryList/HistoryList";
 
 const App = () : ReactElement => {
   const [id, setId] = useState(0);
-  const [country, setSelectedCountry] = useState("");
   const [searchCountry, setSearchCountry] = useState("");
   const [weather, setWeather] = useState<Weather>();
   const [searchHistory, setSearchHistory] = useState<WeatherHistory[]>([]);
 
   const weatherDataService = new WeatherDataService();
-  const getWeatherData  = async (city: string) : Promise<any> => {
+  const getWeatherData  = async (city: string):Promise<Weather|undefined> => {
+
     try {
-      const response: any = await weatherDataService.getWeather(city);
-      let weatherData: any = weatherMapperService.toWeather(response);
+      const response  = await weatherDataService.getWeather(city);
+      const weatherData : Weather = weatherMapperService.toWeather(response);
       setWeather(weatherData);
       enqueueSnackbar("Found Weather for Selected Country", {
         variant: "success",
       });
       return weatherData;
-    } catch (e: any) {
-      enqueueSnackbar("Cannot Find the Selected Country", { variant: "error" });
-      handleDelete(id);
+    } catch (e: unknown) {
+      console.error(e);
     }
   };
 
   const handleSearch = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    setSelectedCountry(searchCountry);
-    getWeatherData(searchCountry).then(():void => {
+    if (searchCountry != undefined) {
+
+      getWeatherData(searchCountry).then(():void => {
       setId((prevId: number): number => prevId + 1);
 
       const searchInfo: WeatherHistory = {
         id: id,
         country_name: weather?.country_name,
-        date_history: getCurrentTimeWithDate(),
+        date_history: weather?.date_now,
         temp_main: weather?.temp_main,
         temp_max: weather?.temp_max,
         temp_min: weather?.temp_min,
         humidity: weather?.humidity,
         weather_main_desc: weather?.weather_main_desc,
       };
-      setSearchHistory((): WeatherHistory[] => [searchInfo, ...searchHistory]);
-    } )
+      console.log(searchInfo);
 
-  };
+        setSearchHistory((): WeatherHistory[] => [searchInfo, ...searchHistory]);
+      }
 
-  const handleRestore = (history_id: number) => {
-    const restoreWeatherHistoryResult: any = searchHistory.filter(
-      (prevHistory) => prevHistory.id == history_id
+
+    ).catch(e=> {
+      console.error(e);
+      })
+
+  }    };
+
+  const handleRestore = (history_id: number) :void => {
+    const restoreWeatherHistoryResult : WeatherHistory[] = searchHistory.filter(
+      (prevHistory) : boolean => prevHistory.id == history_id
     );
-    console.log(restoreWeatherHistoryResult[0]);
+    console.log(restoreWeatherHistoryResult);
 
     const restoreWeatherData: Weather =
       weatherMapperService.fromWeatherHistorytoWeather(
         restoreWeatherHistoryResult[0]
       );
 
-    console.log(restoreWeatherData);
     setWeather(restoreWeatherData); // Display the weather data for the restored item
   };
 
@@ -113,12 +118,12 @@ const App = () : ReactElement => {
                               <img
                                 src={Cloudy}
                                 className={classes["weather-logo"]}
-                              />
+                               alt={Cloudy}/>
                             ) : (
                               <img
                                 src={Sunny}
                                 className={classes["weather-logo"]}
-                              />
+                               alt={Sunny}/>
                             )}
                           </div>
                         </Stack>

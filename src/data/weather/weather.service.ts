@@ -1,4 +1,5 @@
 import { HTTPService } from "../common/http.service";
+import {AxiosResponse} from "axios";
 
 export class WeatherService extends HTTPService {
   constructor(
@@ -24,9 +25,9 @@ export class WeatherService extends HTTPService {
     const paramString: string = `?${queryString}`;
 
     try {
-      let result: any = await this.get(paramString, {});
+      const result :{ request: AxiosResponse<string, JSON>}= await this.get(paramString, {});
       return result.request.data;
-    } catch (error: any) {
+    } catch (error: unknown) {
       throw new Error("e:" + error);
     }
   }
