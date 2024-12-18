@@ -17,7 +17,6 @@ const SearchBar = (props: {
           options={countries}
           getOptionLabel={(option) => option}
           onChange={(event: any, value: any) => {
-            console.log(value);
             event.preventDefault();
             props.setSearchCountry(value);
           }}

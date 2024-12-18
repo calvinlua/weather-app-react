@@ -21,7 +21,7 @@ const App = () : ReactElement => {
   const getWeatherData  = async (city: string):Promise<Weather|undefined> => {
 
     try {
-      const response  = await weatherDataService.getWeather(city);
+      const response : string = await weatherDataService.getWeather(city);
       const weatherData : Weather = weatherMapperService.toWeather(response);
       setWeather(weatherData);
       enqueueSnackbar("Found Weather for Selected Country", {
@@ -34,7 +34,7 @@ const App = () : ReactElement => {
   };
   
   
-  const appendSearchHistory = (searchInfo : WeatherHistory) => {
+  const appendSearchHistory  = (searchInfo : WeatherHistory) : void => {
     if (searchInfo.country_name!= null || undefined) {
       setSearchHistory((): WeatherHistory[] => [searchInfo, ...searchHistory]);
     }
@@ -58,7 +58,6 @@ const App = () : ReactElement => {
         humidity: weather?.humidity,
         weather_main_desc: weather?.weather_main_desc,
       };
-        console.log(searchInfo);
         appendSearchHistory(searchInfo);
       }
 
@@ -73,7 +72,6 @@ const App = () : ReactElement => {
     const restoreWeatherHistoryResult : WeatherHistory[] = searchHistory.filter(
       (prevHistory) : boolean => prevHistory.id == history_id
     );
-    console.log(restoreWeatherHistoryResult);
 
     const restoreWeatherData: Weather =
       weatherMapperService.fromWeatherHistorytoWeather(
@@ -90,8 +88,7 @@ const App = () : ReactElement => {
   };
 
   useEffect(() => {
-    console.log("HELLO" + import.meta.env.VITE_HELLO);
-    console.log(searchCountry);
+    console.log("Hello " + import.meta.env.VITE_HELLO);
   }, [searchCountry]);
 
   return (

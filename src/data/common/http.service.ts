@@ -33,7 +33,7 @@ export class HTTPService {
     };
   }
 
-  get(url: string, customHeaders: object = {}):Promise<{ request: unknown }>  {
+  get(url: string, customHeaders: object = {}) :Promise<{ request: any }>  {
     return this.request("get", url, null, customHeaders);
   }
 }
