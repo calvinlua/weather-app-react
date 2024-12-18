@@ -32,10 +32,18 @@ const App = () : ReactElement => {
       console.error(e);
     }
   };
+  
+  
+  const appendSearchHistory = (searchInfo : WeatherHistory) => {
+    if (searchInfo.country_name!= null || undefined) {
+      setSearchHistory((): WeatherHistory[] => [searchInfo, ...searchHistory]);
+    }
+  }
+  
 
   const handleSearch = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    if (searchCountry != undefined) {
+    if (searchCountry != undefined || null) {
 
       getWeatherData(searchCountry).then(():void => {
       setId((prevId: number): number => prevId + 1);
@@ -50,9 +58,8 @@ const App = () : ReactElement => {
         humidity: weather?.humidity,
         weather_main_desc: weather?.weather_main_desc,
       };
-      console.log(searchInfo);
-
-        setSearchHistory((): WeatherHistory[] => [searchInfo, ...searchHistory]);
+        console.log(searchInfo);
+        appendSearchHistory(searchInfo);
       }
 
 
