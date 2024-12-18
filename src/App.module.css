@@ -1,45 +1,72 @@
-@media (max-width: 2000px), (max-height: 5000px) {
-  .container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    display: flex;
-  }
+.bg {
+  position: relative;
+  background: var(--background-image);
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  .bg {
-    position: relative;
-    background: url("./assets/bg-light.png");
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .content {
-    position: fixed;
-    display: flex;
-    margin-top: 26px;
-    justify-content: center;
-    width: 95%;
-  }
+.display-temperature {
+  color: var(--main-temperature-text-color);
+}
 
-  .main-content-box {
-    border-radius: 40px;
-    border-width: 1px;
-    border-color: "ffffff";
-    background-color: violet;
-    padding: 2em;
-  }
+.container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
 
-  .weather-logo {
-    display: fixed;
-    position: 20 20 20 20;
-    z-index: 1;
-    width: 300px;
-    height: 300px;
-  }
+.content {
+  display: flex;
+  margin-top: 2em;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
-  .today-weather {
-    display: inline;
-  }
+.searchbar {
+  display: flex;
+}
+
+.main-content-box {
+  display: flex;
+  max-width: 30%;
+  width: 48.6%; /* Optional max width */
+  height: auto; /* Adjust to content */
+  margin: 5em auto; /* Center vertically and horizontally */
+  padding: 2em;
+  justify-content: center;
+  background-color: var(--main-container-color);
+  backdrop-filter: blur(1.25em);
+  border-radius: 2.5em;
+  border: var(--main-container-border);
+}
+
+.weather-logo {
+  position: relative;
+  left: 6.25em;
+  top: -4em;
+  z-index: 99;
+  width: 18.75em;
+  height: 18.75em;
+  aspect-ratio: 1/1;
+}
+
+.today-weather {
+  display: flex;
+  width: 38.125em;
+  height: 0.625em;
+}
+
+.weather-sub-info {
+  column-count: 4; /* Number of columns */
+  column-gap: 20px; /* Gap between columns */
+}
+
+.display-weather-subtitle {
+  color: var(--display-weather-subtitle-text-color);
 }

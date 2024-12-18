@@ -1,86 +1,95 @@
-import {
-  Autocomplete,
-  Box,
-  Button,
-  IconButton,
-  List,
-  ListItem,
-  ListItemText,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import classes from "./App.module.css";
-import { Delete, SearchRounded } from "@mui/icons-material";
-import { FormEvent, useEffect, useState } from "react";
+import {FormEvent, ReactElement, useEffect, useState} from "react";
 import WeatherDataService from "./data/weather/weather.service";
-import { getCurrentTimeWithDate } from "./data/common/time.utility.service";
 import { Weather } from "./model/weather/weather";
 import { WeatherHistory } from "./model/weather/weather.history";
 import Cloudy from "./assets/cloud.png";
 import Sunny from "./assets/sun.png";
-import { countries } from "./constants/countries";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import weatherMapperService from "./data/weather/weather.mapper.service";
-import SearchBar from "./components/common/atom/SearchBar.tsx/SearchBar";
+import SearchBar from "./components/common/atom/SearchBar/SearchBar";
+import HistoryList from "./components/common/atom/HistoryList/HistoryList";
 
-const App = () => {
+const App = () : ReactElement => {
   const [id, setId] = useState(0);
-  const [country, setSelectedCountry] = useState("");
   const [searchCountry, setSearchCountry] = useState("");
   const [weather, setWeather] = useState<Weather>();
   const [searchHistory, setSearchHistory] = useState<WeatherHistory[]>([]);
 
   const weatherDataService = new WeatherDataService();
+  const getWeatherData  = async (city: string):Promise<Weather|undefined> => {
 
-  const getWeatherData = async (city: string) => {
     try {
-      const response: any = await weatherDataService.getWeather(city);
-      let weatherData: any = weatherMapperService.toWeather(response);
+      const response : string = await weatherDataService.getWeather(city);
+      const weatherData : Weather = weatherMapperService.toWeather(response);
       setWeather(weatherData);
       enqueueSnackbar("Found Weather for Selected Country", {
         variant: "success",
       });
       return weatherData;
-    } catch (e: any) {
-      enqueueSnackbar("Cannot Find the Selected Country", { variant: "error" });
-      handleDelete(id);
+    } catch (e: unknown) {
+      console.error(e);
     }
   };
+  
+  
+  const appendSearchHistory  = (searchInfo : WeatherHistory) : void => {
+    if (searchInfo.country_name!= null || undefined) {
+      setSearchHistory((): WeatherHistory[] => [searchInfo, ...searchHistory]);
+    }
+  }
+  
 
   const handleSearch = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    setSelectedCountry(searchCountry);
-    getWeatherData(searchCountry);
-    if (country) {
-      setId((prevId) => prevId + 1);
+    if (searchCountry != undefined || null) {
+
+      getWeatherData(searchCountry).then(():void => {
+      setId((prevId: number): number => prevId + 1);
 
       const searchInfo: WeatherHistory = {
         id: id,
         country_name: weather?.country_name,
-        date_history: getCurrentTimeWithDate(),
+        date_history: weather?.date_now,
         temp_main: weather?.temp_main,
         temp_max: weather?.temp_max,
         temp_min: weather?.temp_min,
         humidity: weather?.humidity,
         weather_main_desc: weather?.weather_main_desc,
       };
-      setSearchHistory(() => [searchInfo, ...searchHistory]);
-    }
+        appendSearchHistory(searchInfo);
+      }
+
+
+    ).catch(e=> {
+      console.error(e);
+      })
+
+  }    };
+
+  const handleRestore = (history_id: number) :void => {
+    const restoreWeatherHistoryResult : WeatherHistory[] = searchHistory.filter(
+      (prevHistory) : boolean => prevHistory.id == history_id
+    );
+
+    const restoreWeatherData: Weather =
+      weatherMapperService.fromWeatherHistorytoWeather(
+        restoreWeatherHistoryResult[0]
+      );
+
+    setWeather(restoreWeatherData); // Display the weather data for the restored item
   };
 
-  const handleRestore = (history_id: any) => {
-    const restoreSearch: any = searchHistory.filter(
-      (prevHistory) => prevHistory.id == history_id
-    );
-    const { id, date_history, ...others } = restoreSearch[0];
-    setWeather(others); // Display the weather data for the restored item
-  };
-  const handleDelete = (id: any) => {
+  const handleDelete = (id: number) : void => {
     setSearchHistory((prevHistory) =>
       prevHistory.filter((item) => item.id !== id)
     );
   };
+
+  useEffect(() => {
+    console.log("Hello " + import.meta.env.VITE_HELLO);
+  }, [searchCountry]);
 
   return (
     <>
@@ -91,23 +100,19 @@ const App = () => {
       <div className={classes["container"]}>
         <div className={classes["bg"]}>
           <div className={classes["content"]}>
-            <Stack direction={"column"} gap={3}>
+            <div className={classes["searchbar"]}>
               <SearchBar
                 setSearchCountry={setSearchCountry}
                 handleSearch={handleSearch}
               />
-              <Box
-                className={classes["main-content-box"]}
-                sx={{
-                  opacity: 1,
-                  background: "white",
-                }}
-              >
-                <Stack>
-                  <Stack>
-                    {weather != null ? (
-                      <Stack direction={"column"}>
-                        <div className={classes["today-weather"]}>
+            </div>
+            <div className={classes["main-content-box"]}>
+              <div>
+                <div>
+                  {weather != null ? (
+                    <div>
+                      <div className={classes["today-weather"]}>
+                        <Stack direction={"row"}>
                           <Typography variant="subtitle1">
                             Today's Weather
                           </Typography>
@@ -117,105 +122,62 @@ const App = () => {
                               <img
                                 src={Cloudy}
                                 className={classes["weather-logo"]}
-                              />
+                               alt={Cloudy}/>
                             ) : (
                               <img
                                 src={Sunny}
                                 className={classes["weather-logo"]}
-                              />
+                               alt={Sunny}/>
                             )}
                           </div>
-                        </div>
-                        <Typography
-                          variant="h1"
-                          sx={{
-                            color: "primary.main",
-                            borderWidth: "10px",
-                            borderColor: "white",
-                            borderRadius: "20px",
-                          }}
-                        >
-                          <b>{weather?.temp_main}&deg;</b>
-                        </Typography>
-                        <Typography variant="subtitle1">
-                          H:{weather?.temp_max}&deg;&nbsp;L:{weather?.temp_min}
-                          &deg;
-                        </Typography>
-
-                        <Stack direction={"row"} gap={6}>
-                          <Typography variant="subtitle1">
-                            <b>{weather?.country_name}</b>
-                          </Typography>
-                          <Typography variant="subtitle1">
-                            {weather?.date_now}
-                          </Typography>
-                          <Typography variant="subtitle1">
-                            Humidity:&nbsp;{weather?.humidity}%
-                          </Typography>
-                          <Typography>{weather?.weather_main_desc}</Typography>
                         </Stack>
-                      </Stack>
-                    ) : null}
-                  </Stack>
-                  <Box
-                    sx={{
-                      backgroundColor: "white",
-                      opacity: 1,
-                      borderRadius: "20px",
-                      width: "620px",
-                      height: "548px",
-                    }}
-                  >
-                    <Stack sx={{ opacity: 1, backgroundColor: "white" }}>
-                      <Typography variant="subtitle1">
-                        Search History
+                      </div>
+                      <Typography
+                        variant="h1"
+                        className={classes["display-temperature"]}
+                      >
+                        <b>{weather?.temp_main}&deg;</b>
                       </Typography>
-                      <List>
-                        {searchHistory.map((history: any) => {
-                          return (
-                            <ListItem
-                              key={history.id}
-                              secondaryAction={
-                                <>
-                                  <IconButton
-                                    edge="end"
-                                    aria-label="restore"
-                                    onClick={() => handleRestore(history.id)}
-                                    sx={{
-                                      backgroundColor: "white",
-                                      opacity: 1,
-                                    }}
-                                  >
-                                    <SearchRounded />
-                                  </IconButton>
-                                  <IconButton
-                                    edge="end"
-                                    aria-label="delete"
-                                    onClick={() => handleDelete(history.id)}
-                                    sx={{
-                                      backgroundColor: "white",
-                                      opacity: 1,
-                                    }}
-                                  >
-                                    <Delete />
-                                  </IconButton>
-                                </>
-                              }
-                            >
-                              <ListItemText primary={history.country_name} />
-                              <ListItemText
-                                primary={history.date_history}
-                                sx={{ alignSelf: "flex-end" }}
-                              />
-                            </ListItem>
-                          );
-                        })}
-                      </List>
-                    </Stack>
-                  </Box>
-                </Stack>
-              </Box>
-            </Stack>
+                      <Typography variant="subtitle1">
+                        H:{weather?.temp_max}&deg;&nbsp;L:{weather?.temp_min}
+                        &deg;
+                      </Typography>
+                      <div className={classes["weather-sub-info"]}>
+                        <Typography
+                          variant="subtitle1"
+                          className={classes["display-weather-subtitle"]}
+                        >
+                          <b>{weather?.country_name}</b>
+                        </Typography>
+                        <Typography
+                          variant="subtitle1"
+                          className={classes["display-weather-subtitle"]}
+                        >
+                          {weather?.date_now}
+                        </Typography>
+                        <Typography
+                          variant="subtitle1"
+                          className={classes["display-weather-subtitle"]}
+                        >
+                          Humidity:&nbsp;{weather?.humidity}%
+                        </Typography>
+                        <Typography
+                          variant="subtitle1"
+                          className={classes["display-weather-subtitle"]}
+                        >
+                          {weather?.weather_main_desc}
+                        </Typography>
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+                <HistoryList
+                  HistoryList={searchHistory}
+                  handleRestore={handleRestore}
+                  handleDelete={handleDelete}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

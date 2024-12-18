@@ -1,4 +1,5 @@
 import { HTTPService } from "../common/http.service";
+import {AxiosResponse} from "axios";
 
 export class WeatherService extends HTTPService {
   constructor(
@@ -10,12 +11,8 @@ export class WeatherService extends HTTPService {
   appid: string = import.meta.env.VITE_APP_KEY;
   unit_standard: string = "metric";
 
-  checkFilter(filter: string) {
-    return filter.length != 0;
-  }
 
-  async getWeather(city: string) {
-    console.log(this.appid);
+  async getWeather(city: string):Promise<string> {
     const params = {
       q: city,
       appid: this.appid,
@@ -25,9 +22,10 @@ export class WeatherService extends HTTPService {
     const paramString: string = `?${queryString}`;
 
     try {
-      let result: any = await this.get(paramString, {});
+      let result: { request: AxiosResponse<string, JSON> };
+      result = await this.get(paramString, {});
       return result.request.data;
-    } catch (error: any) {
+    } catch (error: unknown) {
       throw new Error("e:" + error);
     }
   }
