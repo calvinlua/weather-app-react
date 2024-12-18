@@ -22,7 +22,7 @@ export class HTTPService {
       customHeaders: object = {}
   ):Promise<{ request: unknown }> {
     const headers = { ...this.defaultHeaders, ...customHeaders };
-    const config : object = {
+    const config : any = {
       method,
       url,
       headers
